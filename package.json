@@ -1,17 +1,11 @@
 {
   "name": "@studysync/svg-draw",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "publishConfig": {
     "access": "public"
   },
   "description": "SVG image editor with customizable shapes and controls",
-  "keywords": [
-    "svg",
-    "editor",
-    "shape",
-    "material-ui",
-    "tldraw"
-  ],
+  "keywords": ["svg", "editor", "shape", "material-ui", "tldraw"],
   "homepage": "https://github.com/PieceOfMeat/svg-draw#readme",
   "bugs": {
     "url": "https://github.com/PieceOfMeat/svg-draw/issues",
@@ -51,7 +45,7 @@
     "@emotion/styled": ">=11",
     "@mui/icons-material": ">=5",
     "@mui/material": ">=5",
-    "immer": ">=9",
+    "immer": ">=10",
     "react": ">=18",
     "react-dom": ">=18"
   },
@@ -96,7 +90,7 @@
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
     "eslint-plugin-testing-library": "5.0.5",
-    "immer": "^9.0.14",
+    "immer": "^10.0.1",
     "madge": "^5.0.1",
     "parcel": "^2.2.1",
     "react": "^18.1.0",
