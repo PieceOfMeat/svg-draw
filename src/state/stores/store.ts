@@ -1,4 +1,4 @@
-import produce from 'immer'
+import { produce } from 'immer'
 
 type CBFunction<T> = (state: T) => void
 

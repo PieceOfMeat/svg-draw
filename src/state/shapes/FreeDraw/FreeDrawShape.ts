@@ -1,4 +1,4 @@
-import produce from 'immer'
+import { produce } from 'immer'
 import { TDShapeStyle, TDShapeStyleKeys, TDShapeType, Transformable, TransformedBounds } from 'types'
 import BaseShape, { BaseEntity, BaseShapeCreateProps } from 'state/shapes/BaseShape'
 import { getBoundsFromPoints, translateBounds, translatePoints } from 'utils'

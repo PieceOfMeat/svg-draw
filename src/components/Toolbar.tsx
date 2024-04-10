@@ -1,4 +1,4 @@
-import React, { useSyncExternalStore } from 'react'
+import React, { useEffect, useSyncExternalStore } from 'react'
 import Box from '@mui/material/Box'
 import AppBar from '@mui/material/AppBar'
 import { useTheme } from '@mui/material/styles'
@@ -25,7 +25,11 @@ const toolbarButton = ({ title, type, Icon, isVisible }: ToolbarBtnProps) => {
   )
 }
 
-const DrawToolbar = React.memo(() => {
+type DrawToolbarProps = {
+  readonly: boolean,
+}
+
+const DrawToolbar = React.memo(({ readonly }: DrawToolbarProps) => {
   const stateManager = useStateManager()
   const { pageState, toolbar } = stateManager
   const toolbarState = useSyncExternalStore(toolbar.subscribe, () => toolbar.state)
@@ -47,16 +51,22 @@ const DrawToolbar = React.memo(() => {
     pageState.setSettings({ hideGrid: !hideGrid })
   }
 
+  useEffect(() => {
+    if (readonly) stateManager.setTool(TDToolType.Select)
+  }, [readonly, stateManager])
+
   return (
     <Box m="auto" p={1} width="fit-content">
       <AppBar color="transparent" position="static">
         <Toolbar disableGutters={styles.noGutters} variant="dense">
-          <ToggleButtonGroup exclusive onChange={onToolChange} size={styles.size} value={toolbarState.tool}>
-            {toolsList.map(tool => toolbarButton({
-              isVisible: toolbar.isVisible(tool.type),
-              ...tool,
-            }))}
-          </ToggleButtonGroup>
+          {!readonly && (
+            <ToggleButtonGroup exclusive onChange={onToolChange} size={styles.size} value={toolbarState.tool}>
+              {toolsList.map(tool => toolbarButton({
+                isVisible: !readonly && toolbar.isVisible(tool.type),
+                ...tool,
+              }))}
+            </ToggleButtonGroup>
+          )}
 
           <ToggleButton
             onChange={handleShowGridChange}
@@ -69,7 +79,7 @@ const DrawToolbar = React.memo(() => {
             <BorderClearIcon />
           </ToggleButton>
 
-          <StylesSelector />
+          {!readonly && <StylesSelector />}
         </Toolbar>
       </AppBar>
     </Box>

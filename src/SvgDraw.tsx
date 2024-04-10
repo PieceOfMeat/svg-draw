@@ -88,11 +88,11 @@ export const SvgDraw = ({ data = emptyPage, onChange, readonly = false }: SvgDra
       <Renderer
         containerRef={containerRef}
         grid={grid}
-        hideBounds={false}
+        hideBounds={readonly}
         hideGrid={hideGrid}
-        hideHandles={false}
-        hideIndicators={false}
-        hideRotateHandles={false}
+        hideHandles={readonly}
+        hideIndicators={readonly}
+        hideRotateHandles={readonly}
         meta={meta}
         onDoubleClickShape={handleCallback('onDoubleClickShape')}
         onDragBoundsHandle={handleCallback('onDragBoundsHandle')}
@@ -119,7 +119,7 @@ export const SvgDraw = ({ data = emptyPage, onChange, readonly = false }: SvgDra
         pageState={pageState}
         shapeUtils={stateManager.utils}
       />
-      <Toolbar />
+      <Toolbar readonly={readonly} />
     </StateManagerContext.Provider>
   )
 }
